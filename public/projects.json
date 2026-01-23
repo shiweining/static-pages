@@ -1,0 +1,25 @@
+{
+  "projects": [
+    {
+      "id": "dist1",
+      "name": "项目 1",
+      "description": "第一个静态项目的描述信息",
+      "icon": "🚀",
+      "url": "./dist1/index.html"
+    },
+    {
+      "id": "dist2",
+      "name": "项目 2",
+      "description": "第二个静态项目的描述信息",
+      "icon": "⚡",
+      "url": "./dist2/index.html"
+    },
+    {
+      "id": "dist3",
+      "name": "项目 3",
+      "description": "第三个静态项目的描述信息",
+      "icon": "🌟",
+      "url": "./dist3/index.html"
+    }
+  ]
+}
