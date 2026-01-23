@@ -93,7 +93,7 @@
           >
             <div class="card-header">
               <div class="card-icon">{{ project.icon }}</div>
-              <div class="card-status">在线</div>
+              <div class="card-status">已部署</div>
             </div>
             <h3 class="card-title">{{ project.name }}</h3>
             <p class="card-description">{{ project.description }}</p>
