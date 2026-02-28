@@ -2,8 +2,8 @@
   "projects": [
     {
       "id": "dist1",
-      "name": "项目 1",
-      "description": "第一个静态项目的描述信息",
+      "name": "苗木账单管理系统",
+      "description": "用于管理绿化苗木项目的人员、项目、考勤的业务系统",
       "icon": "🚀",
       "url": "./dist1/index.html"
     },
