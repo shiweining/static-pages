@@ -10,14 +10,14 @@
     {
       "id": "dist2",
       "name": "项目 2",
-      "description": "第二个静态项目的描述信息",
+      "description": "第二个静态项目的描述信息,用于占位暂未使用的项目",
       "icon": "⚡",
       "url": "./dist2/index.html"
     },
     {
       "id": "dist3",
-      "name": "项目 3",
-      "description": "第三个静态项目的描述信息",
+      "name": "图书管理系统",
+      "description": "用于管理图书的业务系统,大学时期的demo项目",
       "icon": "🌟",
       "url": "./dist3/index.html"
     }

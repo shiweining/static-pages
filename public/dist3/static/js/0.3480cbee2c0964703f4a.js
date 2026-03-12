@@ -1,0 +1,2 @@
+webpackJsonp([0],{"1CNy":function(o,e,s){"use strict";var u="http://47.107.114.56:8360/",r={user:{login:u+"user/user/loginuser",adduser:u+"user/user/adduser",selectuser:u+"user/user/selectuser",finduser:u+"user/user/finduser",upuser:u+"user/user/upuser",remove:u+"user/user/deleteuser"},book:{addbook:u+"book/book/addbook",selectbook:u+"book/book/selectbook",findbook:u+"book/book/findbook",deletebook:u+"book/book/deletebook",upbook:u+"book/book/upbook"}};e.a={apiConfig:r}}});
+//# sourceMappingURL=0.3480cbee2c0964703f4a.js.map
