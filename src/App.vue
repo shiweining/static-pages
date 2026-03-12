@@ -97,17 +97,30 @@
             </div>
             <h3 class="card-title">{{ project.name }}</h3>
             <p class="card-description">{{ project.description }}</p>
-            <a
-              :href="project.url"
-              class="card-button"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span>访问项目</span>
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
+            <div class="card-actions">
+              <a
+                :href="project.url"
+                class="card-button"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span>访问项目</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+              <a
+                v-if="project.id === 'dist1'"
+                href="./dist1/assets/BillManageSystem_1.0.0_x64_en-US.msi"
+                class="card-button download-button"
+                download
+              >
+                <span>下载安装包</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M8 2V10M8 10L5 7M8 10L11 7M3 13H13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
 
@@ -384,6 +397,7 @@ onMounted(async () => {
   padding: 1.75rem;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
+  transform-style: preserve-3d;
 }
 
 .project-card::before {
@@ -398,13 +412,39 @@ onMounted(async () => {
   transition: opacity 0.4s ease;
 }
 
+.project-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #667eea, #764ba2, #f093fb, #667eea);
+  background-size: 200% 100%;
+  animation: gradient-slide 3s linear infinite;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+@keyframes gradient-slide {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
 .project-card:hover {
-  transform: translateY(-10px) scale(1.02);
   box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
   border-color: rgba(102, 126, 234, 0.5);
 }
 
 .project-card:hover::before {
+  opacity: 1;
+}
+
+.project-card:hover::after {
   opacity: 1;
 }
 
@@ -421,7 +461,16 @@ onMounted(async () => {
   font-size: 3rem;
   line-height: 1;
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+  will-change: transform;
 }
+
+.project-card:hover .card-icon {
+  filter: drop-shadow(0 8px 16px rgba(102, 126, 234, 0.4));
+}
+
+/* 移除图标弹跳动画 */
 
 .card-status {
   display: inline-block;
@@ -433,6 +482,31 @@ onMounted(async () => {
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.02em;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-status::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.project-card:hover .card-status {
+  transform: translateY(-2px) scale(1.05);
+  background: rgba(34, 197, 94, 0.25);
+  border-color: rgba(34, 197, 94, 0.6);
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.4);
+}
+
+.project-card:hover .card-status::before {
+  left: 100%;
 }
 
 .card-title {
@@ -441,15 +515,52 @@ onMounted(async () => {
   margin-bottom: 0.75rem;
   position: relative;
   z-index: 1;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.card-title::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #667eea, #f093fb);
+  transition: width 0.3s ease;
+}
+
+.project-card:hover .card-title {
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.project-card:hover .card-title::after {
+  width: 100%;
 }
 
 .card-description {
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(30, 30, 30, 0.9);
   margin-bottom: 1.5rem;
   line-height: 1.6;
   font-size: 0.95rem;
   position: relative;
   z-index: 1;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
+}
+
+.project-card:hover .card-description {
+  color: rgba(0, 0, 0, 0.95);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.card-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+  perspective: 1000px;
 }
 
 .card-button {
@@ -463,10 +574,13 @@ onMounted(async () => {
   border-radius: 12px;
   font-weight: 600;
   font-size: 0.95rem;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   z-index: 1;
   overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
 .card-button::before {
@@ -480,21 +594,59 @@ onMounted(async () => {
   transition: left 0.5s ease;
 }
 
+.card-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
 .card-button:hover::before {
   left: 100%;
 }
 
+.card-button:hover::after {
+  width: 300px;
+  height: 300px;
+}
+
 .card-button:hover {
   transform: translateX(4px);
-  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.5);
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.6);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.card-button:active {
+  transform: translateX(2px) translateY(0) scale(0.98);
+  transition: transform 0.1s ease;
 }
 
 .card-button svg {
-  transition: transform 0.3s ease;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-style: preserve-3d;
 }
 
 .card-button:hover svg {
+  transform: translateX(4px) rotateY(15deg);
+}
+
+.download-button {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+}
+
+.download-button:hover {
   transform: translateX(4px);
+  box-shadow: 0 8px 24px rgba(34, 197, 94, 0.6);
+}
+
+.download-button:hover svg {
+  transform: translateY(2px) rotateY(-15deg);
 }
 
 /* 加载、错误和空状态 */
@@ -666,6 +818,15 @@ onMounted(async () => {
     grid-template-columns: 1fr;
   }
 
+  .card-actions {
+    flex-direction: column;
+  }
+
+  .card-button {
+    width: 100%;
+    justify-content: center;
+  }
+
   .blob-1,
   .blob-2,
   .blob-3 {
@@ -700,6 +861,15 @@ onMounted(async () => {
 
   .hero-title {
     font-size: 1.75rem;
+  }
+
+  .card-actions {
+    flex-direction: column;
+  }
+
+  .card-button {
+    width: 100%;
+    justify-content: center;
   }
 
   .footer {
