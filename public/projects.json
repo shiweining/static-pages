@@ -9,8 +9,8 @@
     },
     {
       "id": "dist2",
-      "name": "项目 2",
-      "description": "第二个静态项目的描述信息,用于占位暂未使用的项目",
+      "name": "程序员知识库",
+      "description": "这是一个专为开发者打造的技术资料分类汇总平台。",
       "icon": "⚡",
       "url": "./dist2/index.html"
     },
